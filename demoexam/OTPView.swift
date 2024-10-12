@@ -28,7 +28,6 @@ struct OTPView: View {
     @State var toNewPassView = false
     
     @State var timeRemeaning = 59
-  //  @State var timer =
     
     var body: some View {
             VStack{
@@ -56,7 +55,7 @@ struct OTPView: View {
                     CustomOTPField(code: $code_6, wrongCode: $wrongCode)
                 }
                 .padding(.bottom, 30)
-                //Таймер и ресендер
+                //Таймер и ресендер (NE YSPEL =( )
                 VStack{
                     Text("If you didn't receive code, resend after 0:59")
                         .foregroundColor(Color.grayMain)
@@ -64,21 +63,31 @@ struct OTPView: View {
                 }
                 .padding(.bottom, 60)
                 VStack{
-                    Button("Set New Password"){
-                        print("\(code_1)\(code_2)\(code_3)\(code_4)\(code_5)\(code_6)")
-                        if "\(code_1)\(code_2)\(code_3)\(code_4)\(code_5)\(code_6)" == "000000"{
-                            self.toNewPassView = true
-                        } else{
-                            self.wrongCode = true
+                    if (code_1 != "" && code_2 != "" && code_3 != "" && code_4 != "" && code_5 != "" && code_6 != ""){
+                        Button("Set New Password"){
+                            print("\(code_1)\(code_2)\(code_3)\(code_4)\(code_5)\(code_6)")
+                            if "\(code_1)\(code_2)\(code_3)\(code_4)\(code_5)\(code_6)" == "000000"{
+                                self.toNewPassView = true
+                            } else{
+                                self.wrongCode = true
+                            }
                         }
+                        .padding()
+                        .frame(width: 330)
+                        .background(Color.buttonOK)
+                        .cornerRadius(5)
+                        .foregroundColor(.white)
+                        .font(.custom("Roboto-Medium", size: 16))
+                    } else {
+                        Button("Set New Password"){
+                        }
+                        .padding()
+                        .frame(width: 330)
+                        .background(Color.grayMain)
+                        .cornerRadius(5)
+                        .foregroundColor(.white)
+                        .font(.custom("Roboto-Medium", size: 16))
                     }
-                    .padding()
-                    .frame(width: 330)
-                    .background(Color.buttonOK)
-                    .cornerRadius(5)
-                    .foregroundColor(.white)
-                    .font(.custom("Roboto-Medium", size: 16))
-                    
                     
                 }
             }

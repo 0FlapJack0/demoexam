@@ -13,6 +13,8 @@ struct NewPassView: View {
     
     @State var toLoginView = false
     
+    @State var error = false
+    
     var body: some View {
             VStack{
                 NavigationLink("", destination: LogInView(), isActive: $toLoginView)
@@ -38,7 +40,12 @@ struct NewPassView: View {
                 .padding(.bottom, 50)
                 VStack{
                     Button("Log in"){
-                        self.toLoginView = true
+                        if (pass == passConfirm){
+                            self.toLoginView = true
+                        }
+                        else {
+                            self.error = true
+                        }
                     }
                     .padding()
                     .frame(width: 330)
@@ -47,6 +54,11 @@ struct NewPassView: View {
                     .foregroundColor(.white)
                     .font(.custom("Roboto-Medium", size: 16))
                     
+                }
+                .alert(isPresented: $error){
+                    Alert(title: Text("Error"),
+                          message: Text("Пароли должны совпадать!"),
+                          dismissButton: .default(Text("OK")))
                 }
                 Spacer()
             }

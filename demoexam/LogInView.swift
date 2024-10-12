@@ -62,16 +62,26 @@ struct LogInView: View {
                 //Подвал
                 Spacer()
                 VStack{
-                    Button("Log In"){
-                        userViewModel.signIn()
+                    if userViewModel.email != "" && userViewModel.password != "" {
+                        Button("Log In"){
+                            userViewModel.signIn()
+                        }
+                        .padding()
+                        .frame(width: 330)
+                        .background(Color.buttonOK)
+                        .cornerRadius(5)
+                        .foregroundColor(.white)
+                        .font(.custom("Roboto-Medium", size: 16))
+                    } else {
+                        Button("Log In"){
+                        }
+                        .padding()
+                        .frame(width: 330)
+                        .background(Color.grayMain)
+                        .cornerRadius(5)
+                        .foregroundColor(.white)
+                        .font(.custom("Roboto-Medium", size: 16))
                     }
-                    .padding()
-                    .frame(width: 330)
-                    .background(Color.buttonOK)
-                    .cornerRadius(5)
-                    .foregroundColor(.white)
-                    .font(.custom("Roboto-Medium", size: 16))
-                    
                     HStack{
                         Text("Already have an account?")
                             .foregroundColor(Color.grayMain)

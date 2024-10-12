@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var userViewModel = UserViewModel()
     var body: some View {
         Text("Home")
             .font(.custom("Roboto-Regular", size: 24))
+        
     }
 }
 
